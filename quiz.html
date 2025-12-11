@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quiz interactif One Piece - Testez vos connaissances sur l'univers de Luffy">
+    <meta property="og:title" content="Quiz One Piece - Mahmoud Frikha">
+    <meta property="og:description" content="Quiz interactif One Piece - Testez vos connaissances sur l'univers de Luffy">
+    <title>Quiz One Piece - Mahmoud Frikha</title>
+    
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- NAVBAR - CONSISTENT WITH OTHER PAGES -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/download.jpg" alt="Logo du chapeau de paille de Luffy">
+                MF
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">⚓ Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parcours.html">📚 Parcours</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="competences.html">💡 Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="expériences.html">⚔️ Expériences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="événements.html">🎯 Événements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="matieres.html">📖 Matières</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="passions.html">🔥 Passions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="quiz.html">🎮 Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">📧 Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="temoignage-iit.html">
+                            <img src="images/download.png" alt="Logo IIT" class="nav-link-icon">
+                            Témoignage
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO HEADER - CONSISTENT WITH OTHER PAGES -->
+    <header class="hero hero-small">
+        <div class="container hero-content">
+            <div class="hero-text text-center w-100">
+                <h1 class="hero-title">
+                    <img src="images/strawhatsflag.png" alt="Drapeau des chapeaux de paille" class="hero-title-icon"> 
+                    Quiz One Piece
+                </h1>
+                <h2 class="hero-subtitle">Testez vos connaissances sur l'univers de Luffy et son équipage !</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- QUIZ CONTENT -->
+    <section class="quiz-section">
+        <div class="container">
+            <!-- Quiz Introduction -->
+            <div id="quizIntro" class="quiz-content">
+                <h2>Bienvenue dans l'univers de One Piece !</h2>
+                <div class="rules-card">
+                    <h3>Règles du Jeu :</h3>
+                    <ul>
+                        <li><i class="fas fa-anchor"></i> Le quiz contient <strong>15 questions</strong> sur l'univers de One Piece.</li>
+                        <li><i class="fas fa-arrow-right"></i> Les questions apparaissent <strong>une par une</strong> (progression par étapes).</li>
+                        <li><i class="fas fa-check-circle"></i> Vous devez choisir une ou plusieurs réponses (selon le type de question) avant de cliquer sur <strong>"Question Suivante"</strong>.</li>
+                        <li><i class="fas fa-skull-crossbones"></i> Le bouton <strong>"Soumettre le Quiz"</strong> apparaîtra à la dernière question.</li>
+                        <li><i class="fas fa-star"></i> Votre score final déterminera votre rang dans le Nouveau Monde !</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary btn-cta mt-4" id="startQuizBtn">
+                    Commencer le Quiz <i class="fas fa-ship"></i>
+                </button>
+            </div>
+
+            <!-- Quiz Form -->
+            <form id="quizForm" class="quiz-content hidden">
+                <!-- Progress Bar -->
+                <div class="progress-container mb-4">
+                    <div class="progress-bar-quiz">
+                        <div class="progress-bar-inner" id="progressBar" style="width: 0%;"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Progression : 0 / 15</p>
+                </div>
+
+                <!-- Questions Container -->
+                <div id="quizQuestions">
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="text-center mt-5 d-flex justify-content-center gap-3">
+                    <button type="button" id="nextQuestionButton" class="btn btn-primary btn-cta" disabled>
+                        Question Suivante <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <button type="submit" id="submitQuizButton" class="btn btn-submit-quiz hidden" disabled>
+                        Soumettre le Quiz <i class="fas fa-anchor"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Quiz Results -->
+            <div id="quizResults" class="quiz-content hidden">
+                <h2>Résultats du Quiz</h2>
+                <div class="results-summary">
+                    <p class="score-display" id="finalScore">Score / Total</p>
+                    <p class="message" id="scoreMessage">Message</p>
+                </div>
+                
+                <div class="answer-review-section">
+                    <h3>Récapitulatif de vos réponses:</h3>
+                    <div id="reviewContainer">
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <button class="btn btn-restart" id="restartQuizBtn">
+                        Recommencer <i class="fas fa-undo"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION - CONSISTENT WITH OTHER PAGES -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>📧 Envie de me contacter ?</h2>
+                    <p>N'hésitez pas à me contacter pour toute opportunité ou collaboration !</p>
+                </div>
+                <a href="contact.html" class="btn btn-cta">Me Contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER - CONSISTENT WITH OTHER PAGES -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Mahmoud Frikha. Tous droits réservés. <img src="images/strawhatsflag.png" alt="Drapeau des chapeaux de paille" class="footer-icon"></p>
+            <p class="footer-subtitle">Projet Programmation Web 1 - IIT Sfax | Thème One Piece ⚓</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
